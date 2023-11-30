@@ -17,10 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Dropzone, FileMosaic, ExtFile } from "@dropzone-ui/react";
+import { uploadFiles } from "../services/aws/s3";
 
 interface Props {}
 
 export function UploadMedia({}: Props) {
+  const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -33,6 +36,17 @@ export function UploadMedia({}: Props) {
     setFiles(incommingFiles);
     console.log(incommingFiles);
   };
+
+  function onSave() {
+    setLoading(true);
+    uploadFiles(files)
+      .then((res) => {
+        console.log(res);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
   return (
     <Box
@@ -210,8 +224,9 @@ export function UploadMedia({}: Props) {
                   </Button>
 
                   <Button
-                    onClick={() => console.log(data)}
+                    onClick={() => onSave()}
                     flex={1}
+                    isLoading={loading}
                     variant="solid"
                     colorScheme="blue"
                     py="12px"
