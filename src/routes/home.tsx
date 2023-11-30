@@ -1,7 +1,6 @@
 import App from "../App";
 import { RecipeCard } from "../components/cards/recipe";
 import { Navbar } from "../components/navbar";
-import { useAWS } from "../services/aws/init";
 
 export function Home() {
   return (
