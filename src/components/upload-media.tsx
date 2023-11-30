@@ -33,7 +33,8 @@ export function UploadMedia({}: Props) {
         bg: "#111",
       }}
       p={10}
-      h="full"
+      h="calc(100vh-80px)"
+      maxH="calc(100vh-80px)"
       mt="80px"
     >
       <Box>
