@@ -1,12 +1,7 @@
 import { Flex, Box, chakra, Link } from "@chakra-ui/react";
+import { Post } from "../../services/aws/dynamo";
 
-interface Props {
-  title: string;
-  description: string;
-  image: string;
-}
-
-export function RecipeCard({ description, image, title }: Props) {
+export function RecipeCard({ description, files: { images }, title }: Post) {
   return (
     <Box
       bg="white"
@@ -19,7 +14,7 @@ export function RecipeCard({ description, image, title }: Props) {
       display={{
         lg: "flex",
       }}
-      maxW="400px"
+      w="500px"
       shadow={{
         lg: "lg",
       }}
@@ -43,7 +38,7 @@ export function RecipeCard({ description, image, title }: Props) {
           }}
           bgSize="cover"
           style={{
-            backgroundImage: `url("${image}")`,
+            backgroundImage: `url("${images[0]}")`,
           }}
         ></Box>
       </Box>
@@ -69,6 +64,7 @@ export function RecipeCard({ description, image, title }: Props) {
             color: "white",
           }}
           fontWeight="bold"
+          noOfLines={1}
         >
           {title}
         </chakra.h2>
@@ -78,6 +74,7 @@ export function RecipeCard({ description, image, title }: Props) {
           _dark={{
             color: "gray.400",
           }}
+          noOfLines={1}
         >
           {description}
         </chakra.p>

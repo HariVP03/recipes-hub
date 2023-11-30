@@ -1,18 +1,4 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  chakra,
-  CloseButton,
-  Flex,
-  HStack,
-  IconButton,
-  useColorModeValue,
-  useDisclosure,
-  VisuallyHidden,
-  VStack,
-} from "@chakra-ui/react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { Button, chakra, Flex, HStack } from "@chakra-ui/react";
 
 export function Navbar() {
   return (

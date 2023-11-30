@@ -24,3 +24,14 @@ export async function persistPost(post: Post) {
     })
     .promise();
 }
+
+export async function getPosts() {
+  const dynamo = new AWS.DynamoDB.DocumentClient();
+
+  return dynamo
+    .scan({
+      TableName: tableName,
+    })
+    .promise()
+    .then((result) => result.Items as Post[]);
+}

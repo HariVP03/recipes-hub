@@ -51,6 +51,7 @@ export function UploadMedia({}: Props) {
       )
       .then(() => {
         setLoading(false);
+        window.location.href = "/";
       });
   }
 

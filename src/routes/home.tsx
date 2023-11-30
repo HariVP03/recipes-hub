@@ -1,16 +1,34 @@
+import { useEffect, useState } from "react";
 import App from "../App";
 import { RecipeCard } from "../components/cards/recipe";
-import { Navbar } from "../components/navbar";
+import { Post, getPosts } from "../services/aws/dynamo";
+import { Flex, Spinner } from "@chakra-ui/react";
 
 export function Home() {
+  const [loading, setLoading] = useState(true);
+  const [recipes, setRecipes] = useState<Post[]>([]);
+
+  useEffect(() => {
+    getPosts().then((res) => {
+      setRecipes(res);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <Flex w="100vw" h="100vh" alignItems="center" justify="center">
+        <Spinner />
+      </Flex>
+    );
+  }
+
   return (
-    <>
-      <RecipeCard
-        title="123"
-        description="321"
-        image="https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80"
-      />
-    </>
+    <Flex mt="80px" p="2" gap="2" bg="#edf3f8" flexWrap="wrap">
+      {recipes?.map((e, i) => (
+        <RecipeCard {...e} key={i} />
+      ))}
+    </Flex>
   );
 }
 
