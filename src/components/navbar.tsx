@@ -20,7 +20,7 @@ export function Navbar() {
       <Flex alignItems="center" justifyContent="space-between" mx="auto">
         <Flex>
           <chakra.h1 as="a" href="/" fontSize="xl" fontWeight="medium" ml="2">
-            Choc
+            Recipes Hub
           </chakra.h1>
         </Flex>
         <HStack display="flex" alignItems="center" spacing={1}>

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import App from "../App";
 import { RecipeCard } from "../components/cards/recipe";
 import { Post, getPosts } from "../services/aws/dynamo";
-import { Flex, Spinner } from "@chakra-ui/react";
+import { Loader } from "../components/loader";
+import { Flex } from "@chakra-ui/react";
 
 export function Home() {
   const [loading, setLoading] = useState(true);
@@ -16,11 +17,7 @@ export function Home() {
   }, []);
 
   if (loading) {
-    return (
-      <Flex w="100vw" h="100vh" alignItems="center" justify="center">
-        <Spinner />
-      </Flex>
-    );
+    return <Loader />;
   }
 
   return (

@@ -35,3 +35,17 @@ export async function getPosts() {
     .promise()
     .then((result) => result.Items as Post[]);
 }
+
+export async function getPost(id: string) {
+  const dynamo = new AWS.DynamoDB.DocumentClient();
+
+  return dynamo
+    .get({
+      TableName: tableName,
+      Key: {
+        id,
+      },
+    })
+    .promise()
+    .then((result) => result.Item as Post);
+}

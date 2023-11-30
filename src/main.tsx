@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./routes/home.tsx";
 import { Wrapper } from "./components/wrapper.tsx";
 import { Upload } from "./routes/upload.tsx";
+import { ViewPost } from "./routes/post.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/upload",
     element: <Upload />,
+  },
+  {
+    path: "/post/:id",
+    element: <ViewPost />,
   },
 ]);
 

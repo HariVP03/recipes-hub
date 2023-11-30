@@ -1,7 +1,12 @@
-import { Flex, Box, chakra, Link } from "@chakra-ui/react";
+import { Box, chakra, Link } from "@chakra-ui/react";
 import { Post } from "../../services/aws/dynamo";
 
-export function RecipeCard({ description, files: { images }, title }: Post) {
+export function RecipeCard({
+  description,
+  files: { images },
+  title,
+  id,
+}: Post) {
   return (
     <Box
       bg="white"
@@ -81,6 +86,7 @@ export function RecipeCard({ description, files: { images }, title }: Post) {
 
         <Box mt={8}>
           <Link
+            href={`/post/${id}`}
             bg="gray.900"
             color="gray.100"
             px={5}
