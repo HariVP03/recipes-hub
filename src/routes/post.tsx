@@ -37,6 +37,12 @@ export function ViewPost({}: Props) {
         by {post?.user}
       </chakra.h2>
 
+      {post?.calories && (
+        <chakra.h2 fontSize="lg" mb="2">
+          calories {post?.calories} kcal
+        </chakra.h2>
+      )}
+
       {post?.ratings && post?.ratings.length > 0 && (
         <chakra.h3 fontSize="md">
           rated{" "}

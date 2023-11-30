@@ -6,6 +6,7 @@ import { Home } from "./routes/home.tsx";
 import { Wrapper } from "./components/wrapper.tsx";
 import { Upload } from "./routes/upload.tsx";
 import { ViewPost } from "./routes/post.tsx";
+import { Meal } from "./routes/meal.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/post/:id",
     element: <ViewPost />,
+  },
+  {
+    path: "/cart",
+    element: <Meal />,
   },
 ]);
 

@@ -33,6 +33,10 @@ export function Navbar() {
               md: "inline-flex",
             }}
           >
+            <Button variant="ghost" as="a" href="/cart">
+              Your meal
+            </Button>
+
             <Button variant="ghost" as="a" href="/upload">
               Upload
             </Button>

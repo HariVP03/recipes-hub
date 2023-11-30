@@ -1,5 +1,4 @@
 import AWS from "aws-sdk";
-import { nanoid } from "nanoid";
 
 const postsTableName = "posts";
 const cartTableName = "cart";
@@ -56,6 +55,20 @@ export async function getPost(id: string) {
     })
     .promise()
     .then((result) => result.Item as Post);
+}
+
+export function getCart(user: string) {
+  const dynamo = new AWS.DynamoDB.DocumentClient();
+
+  return dynamo
+    .get({
+      TableName: cartTableName,
+      Key: {
+        id: user,
+      },
+    })
+    .promise()
+    .then((result) => result.Item as Cart);
 }
 
 export async function persistCart(user: string, meal: string) {
