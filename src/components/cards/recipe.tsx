@@ -19,9 +19,6 @@ export function RecipeCard({ description, image, title }: Props) {
       display={{
         lg: "flex",
       }}
-      // maxW={{
-      //   lg: "5xl",
-      // }}
       maxW="400px"
       shadow={{
         lg: "lg",

@@ -1,15 +1,14 @@
-import { Button } from "@chakra-ui/react";
-import { useAWS } from "./services/aws/init";
-import { RecipeCard } from "./components/cards/recipe";
-import { Navbar } from "./components/navbar";
+import App from "../App";
+import { RecipeCard } from "../components/cards/recipe";
+import { Navbar } from "../components/navbar";
+import { useAWS } from "../services/aws/init";
 
-function App() {
-  useAWS();
-
+export function Home() {
   return (
     <>
       <div>
         <Navbar />
+
         <RecipeCard
           title="123"
           description="321"
