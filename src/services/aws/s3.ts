@@ -23,6 +23,4 @@ export async function uploadFiles(files: ExtFile[]) {
   const images = await Promise.all(responses);
 
   return images.map((image) => `https://${cdnUrl}/${image.Key}`);
-
-  // return Promise.all(promises);
 }

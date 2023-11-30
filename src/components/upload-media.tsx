@@ -24,24 +24,39 @@ interface Props {}
 export function UploadMedia({}: Props) {
   const [loading, setLoading] = useState(false);
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<{
+    title: string;
+    description: string;
+    files: {
+      images: string[];
+      videos: string[];
+    };
+  }>({
     title: "",
     description: "",
-    files: [],
+    files: {
+      images: [],
+      videos: [],
+    },
   });
 
   const [files, setFiles] = useState<ExtFile[]>([]);
-
-  const updateFiles = (incommingFiles: ExtFile[]) => {
-    setFiles(incommingFiles);
-    console.log(incommingFiles);
-  };
 
   function onSave() {
     setLoading(true);
     uploadFiles(files)
       .then((res) => {
-        console.log(res);
+        setData({
+          ...data,
+          files: {
+            images: res.filter((res, index) =>
+              files?.[index]?.type?.includes("image")
+            ),
+            videos: res.filter((res, index) =>
+              files?.[index]?.type?.includes("video")
+            ),
+          },
+        });
       })
       .finally(() => {
         setLoading(false);
@@ -198,7 +213,7 @@ export function UploadMedia({}: Props) {
                     borderStyle="dashed"
                     rounded="md"
                   >
-                    <Dropzone onChange={updateFiles} value={files}>
+                    <Dropzone onChange={setFiles} value={files}>
                       {files.map((file: any, i) => (
                         <FileMosaic
                           {...file}
