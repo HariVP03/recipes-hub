@@ -14,6 +14,9 @@ dependencies:
   '@chakra-ui/react':
     specifier: ^2.8.2
     version: 2.8.2(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.39)(framer-motion@10.16.9)(react-dom@18.2.0)(react@18.2.0)
+  '@dropzone-ui/react':
+    specifier: ^7.0.4
+    version: 7.0.4(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0)
   '@emotion/react':
     specifier: ^11.11.1
     version: 11.11.1(@types/react@18.2.39)(react@18.2.0)
@@ -2016,6 +2019,24 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@dropzone-ui/react@7.0.4(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wgSsJt98ogNn67RGbVYOQERqX9KS74cmKa6NkO0BUIYX+gZJMXT5HnjLeTFbeSA7JGELnl/xOesccuvcsFdc1w==}
+    peerDependencies:
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@files-ui/react': 1.0.8(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /@dynamicss/dynamicss@2.2.8:
+    resolution: {integrity: sha512-e6hrGUydr8f+c9E/9fHFSG5LoSLdq/MdZXXfbzEDWIVuzKF2hcdxZE7nHNqUNF2htw1mZ17Pyoshu3A6kFEeFA==}
+    requiresBuild: true
+    dev: false
+
   /@emotion/babel-plugin@11.11.0:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
     dependencies:
@@ -2380,6 +2401,24 @@ packages:
     resolution: {integrity: sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@files-ui/core@1.0.4:
+    resolution: {integrity: sha512-CaSyHSwjeWEkctfALoK4MwAxq3Zr7+Ozyk5AMoB3s1UBIVgh2618wvNuUIHSVhWFKeB28bOoYxCzM2PEXO4QgA==}
+    dev: false
+
+  /@files-ui/react@1.0.8(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-yveLiDziZ0WOf1rqRwnQGH6NErvNjkkOURtnK4YyiD2jgTMYlUNhghegciqzHjHd1P5UiD86W+++QYDvtS/rnQ==}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@dynamicss/dynamicss': 2.2.8
+      '@files-ui/core': 1.0.4
+      '@types/react': 18.2.39
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
