@@ -16,15 +16,22 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Dropzone, FileMosaic } from "@dropzone-ui/react";
+import { Dropzone, FileMosaic, ExtFile } from "@dropzone-ui/react";
 
 interface Props {}
 
 export function UploadMedia({}: Props) {
-  const [files, setFiles] = useState([]);
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    files: [],
+  });
 
-  const updateFiles = (incommingFiles: any) => {
+  const [files, setFiles] = useState<ExtFile[]>([]);
+
+  const updateFiles = (incommingFiles: ExtFile[]) => {
     setFiles(incommingFiles);
+    console.log(incommingFiles);
   };
 
   return (
@@ -78,7 +85,6 @@ export function UploadMedia({}: Props) {
             }}
           >
             <chakra.form
-              method="POST"
               shadow="base"
               rounded={[null, "md"]}
               overflow={{
@@ -112,6 +118,10 @@ export function UploadMedia({}: Props) {
                     <InputGroup size="sm">
                       <Input
                         type="tel"
+                        value={data.title}
+                        onChange={(e) =>
+                          setData({ ...data, title: e.target.value })
+                        }
                         placeholder="My amazing recipe"
                         focusBorderColor="brand.400"
                         rounded="md"
@@ -133,6 +143,10 @@ export function UploadMedia({}: Props) {
                     </FormLabel>
                     <Textarea
                       placeholder="Here's what I did!"
+                      value={data.description}
+                      onChange={(e) =>
+                        setData({ ...data, description: e.target.value })
+                      }
                       mt={1}
                       rows={3}
                       shadow="sm"
@@ -184,11 +198,24 @@ export function UploadMedia({}: Props) {
                   </Flex>
                 </FormControl>
                 <Flex gap="12px">
-                  <Button flex={1} variant="solid" as="a" href="/" py="12px">
+                  <Button
+                    type="submit"
+                    flex={1}
+                    variant="solid"
+                    as="a"
+                    href="/"
+                    py="12px"
+                  >
                     Back
                   </Button>
 
-                  <Button flex={1} variant="solid" colorScheme="blue" py="12px">
+                  <Button
+                    onClick={() => console.log(data)}
+                    flex={1}
+                    variant="solid"
+                    colorScheme="blue"
+                    py="12px"
+                  >
                     Save
                   </Button>
                 </Flex>
