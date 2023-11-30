@@ -30,9 +30,11 @@ export function UploadMedia({}: Props) {
   const [data, setData] = useState<{
     title: string;
     description: string;
+    calories: number;
   }>({
     title: "",
     description: "",
+    calories: 0,
   });
 
   const [files, setFiles] = useState<ExtFile[]>([]);
@@ -180,6 +182,31 @@ export function UploadMedia({}: Props) {
                       Brief description for your recipe.
                     </FormHelperText>
                   </FormControl>
+
+                  <FormControl id="title" as={GridItem} mt="12px">
+                    <FormLabel
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                      _dark={{
+                        color: "gray.50",
+                      }}
+                    >
+                      Calories (kcal)
+                    </FormLabel>
+                    <InputGroup size="sm">
+                      <Input
+                        type="number"
+                        value={data.calories}
+                        onChange={(e) =>
+                          setData({ ...data, calories: e.target.valueAsNumber })
+                        }
+                        placeholder="total calories"
+                        focusBorderColor="brand.400"
+                        rounded="md"
+                      />
+                    </InputGroup>
+                  </FormControl>
                 </div>
                 <FormControl>
                   <FormLabel
@@ -233,7 +260,9 @@ export function UploadMedia({}: Props) {
                   <Button
                     onClick={() => onSave()}
                     flex={1}
-                    disabled={!data.title || !data.description}
+                    disabled={
+                      !data.title || !data.description || isNaN(data.calories)
+                    }
                     isLoading={loading}
                     variant="solid"
                     colorScheme="blue"

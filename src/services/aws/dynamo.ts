@@ -4,6 +4,7 @@ const tableName = "posts";
 
 export type Post = {
   id: string;
+  calories: number;
   title: string;
   description: string;
   files: {

@@ -44,7 +44,9 @@ export function ViewPost({}: Props) {
         </chakra.h3>
       )}
 
-      <chakra.p mt="72px">{post?.description}</chakra.p>
+      <chakra.p mt="72px" whiteSpace="pre-wrap">
+        {post?.description}
+      </chakra.p>
 
       {post?.files?.images && post.files.images.length > 0 && (
         <>
