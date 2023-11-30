@@ -9,6 +9,8 @@ interface Props {
 export function Wrapper({ children }: Props) {
   useAWS();
 
+  
+
   return (
     <chakra.div bg="#edf3f8" h="100vh" maxH="100vh">
       <Navbar />

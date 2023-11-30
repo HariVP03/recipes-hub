@@ -12,8 +12,6 @@ export function ViewPost({}: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(id);
-
     if (!id) {
       return;
     }
