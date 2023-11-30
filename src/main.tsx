@@ -7,6 +7,7 @@ import { Wrapper } from "./components/wrapper.tsx";
 import { Upload } from "./routes/upload.tsx";
 import { ViewPost } from "./routes/post.tsx";
 import { Meal } from "./routes/meal.tsx";
+import { initialiseAWS } from "./services/aws/init.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,12 +29,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+initialiseAWS();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ChakraProvider>
-      <Wrapper>
-        <RouterProvider router={router} />
-      </Wrapper>
-    </ChakraProvider>
-  </React.StrictMode>
+  <ChakraProvider>
+    <Wrapper>
+      <RouterProvider router={router} />
+    </Wrapper>
+  </ChakraProvider>
 );

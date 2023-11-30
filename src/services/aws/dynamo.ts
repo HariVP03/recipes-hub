@@ -71,6 +71,19 @@ export function getCart(user: string) {
     .then((result) => result.Item as Cart);
 }
 
+export function clearCart(user: string) {
+  const dynamo = new AWS.DynamoDB.DocumentClient();
+
+  return dynamo
+    .delete({
+      TableName: cartTableName,
+      Key: {
+        id: user,
+      },
+    })
+    .promise();
+}
+
 export async function persistCart(user: string, meal: string) {
   const dynamo = new AWS.DynamoDB.DocumentClient();
 
