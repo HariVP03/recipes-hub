@@ -96,7 +96,7 @@ export async function persistCart(user: string, meal: string) {
     })
     .promise()
     .then((result) => result.Item as Cart)
-    .catch((e) => {
+    .catch(() => {
       return undefined;
     });
 
