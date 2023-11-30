@@ -2,13 +2,14 @@ import { ExtFile } from "@dropzone-ui/react";
 import AWS from "aws-sdk";
 
 export const bucketName = "hari-bucket-123-321" as const;
+export const cdnUrl = "d3n9nk4vbuo5sc.cloudfront.net";
 
-export function uploadFiles(files: ExtFile[]) {
+export async function uploadFiles(files: ExtFile[]) {
   const s3 = new AWS.S3();
 
   const base = "upload/";
 
-  const promises = files.map((file) => {
+  const responses = files.map((file) => {
     return s3
       .upload({
         Bucket: bucketName,
@@ -19,5 +20,9 @@ export function uploadFiles(files: ExtFile[]) {
       .promise();
   });
 
-  return Promise.all(promises);
+  const images = await Promise.all(responses);
+
+  return images.map((image) => `https://${cdnUrl}/${image.Key}`);
+
+  // return Promise.all(promises);
 }
