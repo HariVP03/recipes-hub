@@ -18,6 +18,9 @@ import {
 import { useState } from "react";
 import { Dropzone, FileMosaic, ExtFile } from "@dropzone-ui/react";
 import { uploadFiles } from "../services/aws/s3";
+import { transformCdnResponse } from "../services/transformers";
+import { persistPost } from "../services/aws/dynamo";
+import { nanoid } from "nanoid";
 
 interface Props {}
 
@@ -27,17 +30,9 @@ export function UploadMedia({}: Props) {
   const [data, setData] = useState<{
     title: string;
     description: string;
-    files: {
-      images: string[];
-      videos: string[];
-    };
   }>({
     title: "",
     description: "",
-    files: {
-      images: [],
-      videos: [],
-    },
   });
 
   const [files, setFiles] = useState<ExtFile[]>([]);
@@ -45,20 +40,16 @@ export function UploadMedia({}: Props) {
   function onSave() {
     setLoading(true);
     uploadFiles(files)
-      .then((res) => {
-        setData({
+      .then((res) =>
+        persistPost({
           ...data,
-          files: {
-            images: res.filter((res, index) =>
-              files?.[index]?.type?.includes("image")
-            ),
-            videos: res.filter((res, index) =>
-              files?.[index]?.type?.includes("video")
-            ),
-          },
-        });
-      })
-      .finally(() => {
+          files: transformCdnResponse(res, files),
+          id: nanoid(),
+          ratings: [],
+          user: "hari",
+        })
+      )
+      .then(() => {
         setLoading(false);
       });
   }
@@ -241,6 +232,7 @@ export function UploadMedia({}: Props) {
                   <Button
                     onClick={() => onSave()}
                     flex={1}
+                    disabled={!data.title || !data.description}
                     isLoading={loading}
                     variant="solid"
                     colorScheme="blue"
