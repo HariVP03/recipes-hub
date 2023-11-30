@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <Upload />,
   },
   {
-    path: "/post/:id",
+    path: "/temp-posts/:id",
     element: <ViewPost />,
   },
 ]);
