@@ -171,7 +171,13 @@ export function UploadMedia({}: Props) {
                   >
                     <Dropzone onChange={updateFiles} value={files}>
                       {files.map((file: any, i) => (
-                        <FileMosaic {...file} preview key={i} />
+                        <FileMosaic
+                          {...file}
+                          backgroundBlurImage={false}
+                          alwaysActive
+                          preview
+                          key={i}
+                        />
                       ))}
                     </Dropzone>
                   </Flex>
