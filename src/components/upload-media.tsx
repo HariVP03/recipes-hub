@@ -29,12 +29,12 @@ export function UploadMedia({}: Props) {
 
   return (
     <Box
-      bg="#edf3f8"
       _dark={{
         bg: "#111",
       }}
       p={10}
-      h="100vh"
+      h="full"
+      mt="80px"
     >
       <Box>
         <SimpleGrid
