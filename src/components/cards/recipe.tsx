@@ -1,5 +1,6 @@
-import { Box, chakra, Link } from "@chakra-ui/react";
-import { Post } from "../../services/aws/dynamo";
+import { Box, chakra, Button, Link } from "@chakra-ui/react";
+import { Post, persistCart } from "../../services/aws/dynamo";
+import { useState } from "react";
 
 export function RecipeCard({
   description,
@@ -7,6 +8,16 @@ export function RecipeCard({
   title,
   id,
 }: Post) {
+  const [loading, setLoading] = useState(false);
+
+  function onAddToCart() {
+    setLoading(true);
+    persistCart("hari", id).then((res) => {
+      console.log(res);
+      setLoading(false);
+    });
+  }
+
   return (
     <Box
       bg="white"
@@ -59,11 +70,13 @@ export function RecipeCard({
           lg: "50%",
         }}
       >
-        <chakra.h2
+        <Link
           fontSize={{
             base: "2xl",
             md: "3xl",
           }}
+          href={`/post/${id}`}
+          cursor="pointer"
           color="gray.800"
           _dark={{
             color: "white",
@@ -72,7 +85,7 @@ export function RecipeCard({
           noOfLines={1}
         >
           {title}
-        </chakra.h2>
+        </Link>
         <chakra.p
           mt={4}
           color="gray.600"
@@ -85,20 +98,18 @@ export function RecipeCard({
         </chakra.p>
 
         <Box mt={8}>
-          <Link
-            href={`/post/${id}`}
-            bg="gray.900"
-            color="gray.100"
+          <Button
+            isLoading={loading}
+            loadingText="Adding to cart"
+            colorScheme="linkedin"
             px={5}
+            onClick={onAddToCart}
             py={3}
             fontWeight="semibold"
             rounded="lg"
-            _hover={{
-              bg: "gray.800",
-            }}
           >
-            View
-          </Link>
+            Add meal
+          </Button>
         </Box>
       </Box>
     </Box>
